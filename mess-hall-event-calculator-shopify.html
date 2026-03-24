@@ -1,0 +1,803 @@
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── ALL STYLES SCOPED TO #mh-calc — will not affect Shopify theme ── */
+
+#mh-calc *, #mh-calc *::before, #mh-calc *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#mh-calc {
+  --mh-gold:       #F5A623;
+  --mh-blue:       #1A4FA0;
+  --mh-teal:       #1A7A6E;
+  --mh-red:        #E83A1F;
+  --mh-maroon:     #6B0F1A;
+  --bg:            #EDE8DE;
+  --card-bg:       #D93025;
+  --card-light:    #FFFFFF;
+  --text-dark:     #FFFFFF;
+  --text-light:    #1C1C1C;
+  --sub-dark:      rgba(255,255,255,0.55);
+  --sub-light:     #666;
+  --input-bg:      #F6F4EF;
+  --input-border:  #D8D3CA;
+  --row-alt:       #F9F7F3;
+  --row-border:    #EDEBE6;
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+/* WRAP */
+#mh-calc .mhc-wrap { max-width: 780px; margin: 0 auto; padding: 20px 14px 50px; }
+
+/* HEADER */
+#mh-calc .mhc-header {
+  background: var(--card-bg);
+  padding: 28px 28px 24px;
+  margin-bottom: 10px;
+  border-top: 4px solid var(--mh-gold);
+}
+#mh-calc .mhc-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--mh-gold); margin-bottom: 8px;
+}
+#mh-calc .mhc-header h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(34px, 8vw, 58px);
+  text-transform: uppercase; letter-spacing: 1px;
+  line-height: 1; color: var(--text-dark);
+}
+#mh-calc .mhc-sub {
+  font-size: 13px; color: var(--sub-dark);
+  font-weight: 400; margin-top: 8px;
+}
+
+/* CARDS */
+#mh-calc .mhc-card {
+  background: var(--card-light);
+  margin-bottom: 10px;
+  overflow: hidden;
+  border: 1px solid #D8D3CA;
+}
+#mh-calc .mhc-card-head {
+  background: var(--card-bg);
+  padding: 11px 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+#mh-calc .mhc-card-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--mh-gold); flex-shrink: 0;
+}
+#mh-calc .mhc-card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--text-dark);
+}
+#mh-calc .mhc-card-body { padding: 22px 20px; }
+
+/* INPUT GRID */
+#mh-calc .mhc-input-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+#mh-calc .mhc-input-group { display: flex; flex-direction: column; gap: 6px; }
+#mh-calc .mhc-input-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sub-light);
+}
+#mh-calc input[type="number"] {
+  width: 100%; padding: 11px 14px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px; font-weight: 700;
+  color: var(--text-light);
+  outline: none; transition: border-color 0.15s;
+  -webkit-appearance: none; -moz-appearance: textfield;
+  border-radius: 0;
+}
+#mh-calc input[type="number"]:focus { border-color: var(--mh-red); background: #fff; }
+#mh-calc input[type="number"]::-webkit-inner-spin-button,
+#mh-calc input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+#mh-calc select {
+  width: 100%; padding: 11px 14px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--text-light);
+  outline: none; cursor: pointer; transition: border-color 0.15s;
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%23666' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 38px; border-radius: 0;
+}
+#mh-calc select:focus { border-color: var(--mh-red); }
+#mh-calc .mhc-input-note { font-size: 11px; color: var(--sub-light); font-weight: 500; }
+
+/* CHIPS */
+#mh-calc .mhc-chips-row { display: flex; gap: 12px; flex-wrap: wrap; padding: 18px 20px; }
+#mh-calc .mhc-chip {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--input-bg); border: 1px solid var(--input-border);
+  border-top: 3px solid var(--mh-gold);
+  padding: 12px 22px; min-width: 100px;
+}
+#mh-calc .mhc-chip-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 34px;
+  color: var(--text-light); line-height: 1;
+}
+#mh-calc .mhc-chip-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sub-light); text-align: center; margin-top: 4px;
+}
+
+/* RESULT COLUMNS */
+#mh-calc .mhc-result-cols { display: grid; grid-template-columns: 1fr 1fr; }
+#mh-calc .mhc-result-col { overflow: hidden; }
+#mh-calc .mhc-result-col:first-child { border-right: 1px solid var(--row-border); }
+#mh-calc .mhc-col-head {
+  padding: 9px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  border-bottom: 1px solid var(--row-border);
+}
+#mh-calc .mhc-col-head.teal { background: #E0F0EE; color: var(--mh-teal); }
+#mh-calc .mhc-col-head.blue { background: #E0E9F5; color: var(--mh-blue); }
+#mh-calc .mhc-rrow {
+  display: flex; justify-content: space-between;
+  align-items: baseline; padding: 10px 18px;
+  border-bottom: 1px solid var(--row-border); gap: 10px;
+}
+#mh-calc .mhc-rrow.alt { background: var(--row-alt); }
+#mh-calc .mhc-rrow.subtotal {
+  background: var(--input-bg);
+  border-top: 1px solid var(--input-border); border-bottom: none;
+}
+#mh-calc .mhc-rlabel { font-size: 13px; font-weight: 500; color: var(--sub-light); flex: 1; }
+#mh-calc .mhc-rsub { font-size: 11px; color: #AAA; display: block; margin-top: 2px; }
+#mh-calc .mhc-rval {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 19px;
+  color: var(--text-light); white-space: nowrap;
+}
+#mh-calc .mhc-rval.teal { color: var(--mh-teal); }
+#mh-calc .mhc-rval.blue { color: var(--mh-blue); }
+#mh-calc .mhc-rval.lg   { font-size: 22px; }
+#mh-calc .mhc-rlabel-strong { font-weight: 700; color: var(--text-light); }
+
+/* GRAND TOTAL */
+#mh-calc .mhc-grand-total {
+  background: var(--card-bg); padding: 22px 24px;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 12px; margin-bottom: 10px;
+}
+#mh-calc .mhc-gt-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--mh-gold);
+}
+#mh-calc .mhc-gt-sub {
+  font-size: 11px; color: var(--sub-dark);
+  margin-top: 2px; text-transform: uppercase; letter-spacing: 1px;
+}
+#mh-calc .mhc-gt-amount {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(38px, 9vw, 54px);
+  color: var(--text-dark); letter-spacing: 1px;
+}
+
+/* COLLAPSE TOGGLES */
+#mh-calc .mhc-ctoggle {
+  width: 100%; border: none; cursor: pointer;
+  padding: 13px 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 2px; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 8px; background: var(--card-bg);
+  color: var(--text-dark); transition: background 0.15s;
+  border-left: 4px solid transparent;
+}
+#mh-calc .mhc-ctoggle:hover { background: #b01f16; }
+#mh-calc .mhc-ctoggle-left { display: flex; align-items: center; gap: 10px; }
+#mh-calc .mhc-ctoggle-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+#mh-calc .mhc-adv-toggle  .mhc-ctoggle-dot { background: var(--mh-gold); }
+#mh-calc .mhc-pm-toggle   .mhc-ctoggle-dot { background: var(--mh-teal); }
+#mh-calc .mhc-cost-toggle .mhc-ctoggle-dot { background: var(--mh-blue); }
+#mh-calc .mhc-ctoggle-right { display: flex; align-items: center; gap: 12px; }
+#mh-calc .mhc-ctoggle-badge {
+  font-family: 'Barlow', sans-serif; font-size: 10px;
+  font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--sub-dark);
+}
+#mh-calc .mhc-ctoggle-arrow {
+  width: 20px; height: 20px; display: flex;
+  align-items: center; justify-content: center;
+  transition: transform 0.25s; flex-shrink: 0; color: var(--sub-dark);
+}
+#mh-calc .mhc-ctoggle.open .mhc-ctoggle-arrow { transform: rotate(180deg); }
+#mh-calc .mhc-adv-toggle.open  { border-left-color: var(--mh-gold); }
+#mh-calc .mhc-pm-toggle.open   { border-left-color: var(--mh-teal); }
+#mh-calc .mhc-cost-toggle.open { border-left-color: var(--mh-blue); }
+
+/* COLLAPSE PANELS */
+#mh-calc .mhc-cpanel {
+  background: var(--card-light);
+  border: 1px solid #D8D3CA; border-top: none;
+  overflow: hidden; max-height: 0;
+  transition: max-height 0.45s ease; margin-bottom: 0;
+}
+#mh-calc .mhc-cpanel.open { max-height: 2800px; margin-bottom: 2px; }
+#mh-calc .mhc-panel-inner { padding: 22px 20px 26px; }
+
+#mh-calc .mhc-psect {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  padding-bottom: 8px; margin-bottom: 12px; margin-top: 22px;
+  border-bottom: 1px solid var(--row-border);
+}
+#mh-calc .mhc-psect:first-child { margin-top: 0; }
+#mh-calc .mhc-adv-panel  .mhc-psect { color: var(--mh-maroon); }
+#mh-calc .mhc-pm-panel   .mhc-psect { color: var(--mh-teal); }
+#mh-calc .mhc-cost-panel .mhc-psect { color: var(--mh-blue); }
+
+/* SMALL INPUTS */
+#mh-calc .mhc-sm-input {
+  width: 100%; border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 15px;
+  padding: 8px 6px; outline: none; text-align: center;
+  transition: border-color 0.15s;
+  -webkit-appearance: none; -moz-appearance: textfield;
+  border-radius: 0; color: var(--text-light);
+}
+#mh-calc .mhc-sm-input::-webkit-inner-spin-button,
+#mh-calc .mhc-sm-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+#mh-calc .mhc-sm-input:focus { border-color: var(--mh-red); background: #fff; }
+
+/* HAT TIER CARDS */
+#mh-calc .mhc-hat-tier-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+#mh-calc .mhc-hat-tier-card {
+  border: 1px solid var(--input-border);
+  background: var(--row-alt); padding: 10px 10px 12px;
+}
+#mh-calc .mhc-htc-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--mh-maroon); margin-bottom: 10px;
+  padding-bottom: 6px; border-bottom: 2px solid var(--mh-gold);
+  display: block;
+}
+#mh-calc .mhc-htc-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+#mh-calc .mhc-htc-field:last-child { margin-bottom: 0; }
+#mh-calc .mhc-htc-field-label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--sub-light);
+}
+
+/* TWO-COL */
+#mh-calc .mhc-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+#mh-calc .mhc-mini-tbl { display: flex; flex-direction: column; gap: 8px; }
+#mh-calc .mhc-mini-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 10px; align-items: center; }
+#mh-calc .mhc-mini-lbl { font-size: 12px; font-weight: 600; color: var(--sub-light); }
+#mh-calc .mhc-pct-wrap { display: flex; align-items: center; gap: 6px; }
+#mh-calc .mhc-pct-sym { font-size: 13px; font-weight: 700; color: var(--sub-light); }
+
+/* VIEW ROWS */
+#mh-calc .mhc-view-rows { display: flex; flex-direction: column; }
+#mh-calc .mhc-view-row {
+  display: flex; justify-content: space-between;
+  align-items: baseline; padding: 8px 0;
+  border-bottom: 1px solid var(--row-border); gap: 10px;
+}
+#mh-calc .mhc-view-row.vtotal {
+  background: var(--input-bg);
+  margin: 4px -20px 0; padding: 10px 20px;
+  border-bottom: none; border-top: 1px solid var(--input-border);
+}
+#mh-calc .mhc-view-row.vtotal .mhc-vlbl { font-weight: 700; color: var(--text-light); }
+#mh-calc .mhc-vlbl { font-size: 12px; font-weight: 500; color: var(--sub-light); flex: 1; }
+#mh-calc .mhc-vlbl-strong { font-weight: 700; color: var(--text-light); }
+#mh-calc .mhc-vval {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 16px;
+  color: var(--text-light); white-space: nowrap;
+}
+#mh-calc .mhc-vval.pos { color: var(--mh-teal); }
+#mh-calc .mhc-vval.neg { color: var(--mh-red); }
+#mh-calc .mhc-vval.big { font-size: 28px; }
+#mh-calc .mhc-vdivider { border: none; border-top: 1px solid var(--row-border); margin: 6px 0; }
+
+/* RESET BTN */
+#mh-calc .mhc-preset {
+  margin-top: 20px; width: 100%;
+  background: transparent; border: 1px solid var(--input-border);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 10px 16px; cursor: pointer;
+  color: var(--sub-light); transition: all 0.15s;
+}
+#mh-calc .mhc-preset:hover { border-color: var(--mh-red); color: var(--mh-red); }
+
+/* FOOTNOTE */
+#mh-calc .mhc-footnote {
+  font-size: 11px; color: #AAA; text-align: center;
+  padding: 16px 16px 0; font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 560px) {
+  #mh-calc .mhc-hat-tier-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  #mh-calc .mhc-input-grid  { grid-template-columns: 1fr; }
+  #mh-calc .mhc-two-col     { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  #mh-calc .mhc-result-cols { grid-template-columns: 1fr; }
+  #mh-calc .mhc-result-col:first-child { border-right: none; border-bottom: 1px solid var(--row-border); }
+}
+@media (max-width: 340px) {
+  #mh-calc .mhc-hat-tier-grid { grid-template-columns: 1fr; }
+}
+
+/* ANIMATION */
+@keyframes mhc-pulse { 0%{transform:scale(1)} 50%{transform:scale(1.04)} 100%{transform:scale(1)} }
+#mh-calc .vc { animation: mhc-pulse 0.2s ease; }
+</style>
+
+<div id="mh-calc">
+<div class="mhc-wrap">
+
+  <!-- HEADER -->
+  <div class="mhc-header">
+    <div class="mhc-eyebrow">Mess Hall Franchisee Tool</div>
+    <h1>Event Pricing<br>Calculator</h1>
+    <div class="mhc-sub">Fill in the fields below to get an estimated quote for your Mess Hall event.</div>
+  </div>
+
+  <!-- EVENT DETAILS -->
+  <div class="mhc-card">
+    <div class="mhc-card-head"><div class="mhc-card-dot"></div><div class="mhc-card-title">Event Details</div></div>
+    <div class="mhc-card-body">
+      <div class="mhc-input-grid">
+        <div class="mhc-input-group">
+          <div class="mhc-input-label">Total Guests</div>
+          <input type="number" id="mhc-totalGuests" value="100" min="1" inputmode="numeric">
+        </div>
+        <div class="mhc-input-group">
+          <div class="mhc-input-label">Total Hats</div>
+          <input type="number" id="mhc-totalHats" value="100" min="1" inputmode="numeric">
+        </div>
+        <div class="mhc-input-group">
+          <div class="mhc-input-label">Custom Patches</div>
+          <select id="mhc-customPatches">
+            <option value="none" selected>None</option>
+            <option value="1 Design">1 Design</option>
+            <option value="2 Designs">2 Designs</option>
+          </select>
+        </div>
+        <div class="mhc-input-group">
+          <div class="mhc-input-label">Custom Patch Suite</div>
+          <select id="mhc-patchSuite">
+            <option value="No" selected>No</option>
+            <option value="Yes">Yes</option>
+          </select>
+          <span class="mhc-input-note">3 designs included</span>
+        </div>
+        <div class="mhc-input-group">
+          <div class="mhc-input-label">Event Length (hrs)</div>
+          <input type="number" id="mhc-eventLength" value="2" min="1" max="24" inputmode="numeric">
+        </div>
+        <div class="mhc-input-group">
+          <div class="mhc-input-label">Overnights</div>
+          <input type="number" id="mhc-overnights" value="0" min="0" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAFFING -->
+  <div class="mhc-card">
+    <div class="mhc-card-head"><div class="mhc-card-dot"></div><div class="mhc-card-title">Staffing Requirements</div></div>
+    <div class="mhc-chips-row">
+      <div class="mhc-chip"><div class="mhc-chip-num" id="mhc-staffCount">—</div><div class="mhc-chip-label">Staff Needed</div></div>
+      <div class="mhc-chip"><div class="mhc-chip-num" id="mhc-cartCount">—</div><div class="mhc-chip-label">Carts Needed</div></div>
+    </div>
+  </div>
+
+  <!-- PRICING BREAKDOWN -->
+  <div class="mhc-card" style="overflow:hidden;">
+    <div class="mhc-card-head"><div class="mhc-card-dot"></div><div class="mhc-card-title">Pricing Breakdown</div></div>
+    <div class="mhc-result-cols">
+      <div class="mhc-result-col">
+        <div class="mhc-col-head teal">Due Prior to Event</div>
+        <div class="mhc-rrow alt">
+          <div class="mhc-rlabel">Hat Pricing<span class="mhc-rsub" id="mhc-hatTierLabel">—</span></div>
+          <div class="mhc-rval teal" id="mhc-hatCost">$—</div>
+        </div>
+        <div class="mhc-rrow">
+          <div class="mhc-rlabel">Custom Patches</div>
+          <div class="mhc-rval teal" id="mhc-patchCost">$—</div>
+        </div>
+        <div class="mhc-rrow alt">
+          <div class="mhc-rlabel">Custom Patch Suite</div>
+          <div class="mhc-rval teal" id="mhc-suiteCost">$—</div>
+        </div>
+        <div class="mhc-rrow">
+          <div class="mhc-rlabel">Staffing Fee</div>
+          <div class="mhc-rval teal" id="mhc-staffingCost">$—</div>
+        </div>
+        <div class="mhc-rrow alt">
+          <div class="mhc-rlabel">Travel</div>
+          <div class="mhc-rval teal" id="mhc-travelCost">$—</div>
+        </div>
+        <div class="mhc-rrow subtotal">
+          <div class="mhc-rlabel mhc-rlabel-strong">Total Due Prior</div>
+          <div class="mhc-rval teal lg" id="mhc-totalPrior">$—</div>
+        </div>
+      </div>
+      <div class="mhc-result-col">
+        <div class="mhc-col-head blue">Due Post-Event</div>
+        <div class="mhc-rrow alt">
+          <div class="mhc-rlabel">Remaining Hat Balance<span class="mhc-rsub" id="mhc-hatRemLabel">—</span></div>
+          <div class="mhc-rval blue" id="mhc-hatRemCost">$—</div>
+        </div>
+        <div class="mhc-rrow subtotal">
+          <div class="mhc-rlabel mhc-rlabel-strong">Total Due Post</div>
+          <div class="mhc-rval blue lg" id="mhc-totalPost">$—</div>
+        </div>
+        <div class="mhc-rrow">
+          <div class="mhc-rlabel" style="font-size:11px;color:#AAA;">* Overage hat count tracked on-site</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAND TOTAL -->
+  <div class="mhc-grand-total">
+    <div>
+      <div class="mhc-gt-label">Grand Total</div>
+      <div class="mhc-gt-sub">Prior + Post-Event</div>
+    </div>
+    <div class="mhc-gt-amount" id="mhc-grandTotal">$—</div>
+  </div>
+
+  <!-- 1. ADDITIONAL PRICE BREAKDOWN -->
+  <button class="mhc-ctoggle mhc-adv-toggle" onclick="mhcToggle('adv')">
+    <div class="mhc-ctoggle-left">
+      <div class="mhc-ctoggle-dot"></div>
+      Additional Price Breakdown
+    </div>
+    <div class="mhc-ctoggle-right">
+      <span class="mhc-ctoggle-badge">Custom Quotes &amp; Discounts</span>
+      <div class="mhc-ctoggle-arrow">
+        <svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </button>
+  <div class="mhc-cpanel mhc-adv-panel" id="mhc-adv-panel">
+    <div class="mhc-panel-inner">
+      <div class="mhc-psect">Hat Pricing by Volume Tier</div>
+      <div class="mhc-hat-tier-grid" id="mhc-hatTierGrid"></div>
+      <div class="mhc-two-col" style="margin-top:22px;">
+        <div>
+          <div class="mhc-psect">Patch Price (per hat / per design)</div>
+          <div class="mhc-mini-tbl" id="mhc-patchTable"></div>
+        </div>
+        <div>
+          <div class="mhc-psect">Patch Suite Flat Fee</div>
+          <div class="mhc-mini-tbl" id="mhc-suiteTable"></div>
+        </div>
+      </div>
+      <div class="mhc-psect" style="margin-top:22px;">Staffing &amp; Travel Rates</div>
+      <div class="mhc-two-col">
+        <div class="mhc-mini-tbl">
+          <div class="mhc-mini-row">
+            <div class="mhc-mini-lbl">Staffing % of revenue</div>
+            <div class="mhc-pct-wrap">
+              <input type="number" class="mhc-sm-input" id="mhc-staffPct" value="7" min="0" max="100" step="0.5" inputmode="decimal">
+              <span class="mhc-pct-sym">%</span>
+            </div>
+          </div>
+          <div class="mhc-mini-row">
+            <div class="mhc-mini-lbl">Min per staff member ($)</div>
+            <input type="number" class="mhc-sm-input" id="mhc-staffMin" value="150" min="0" inputmode="numeric">
+          </div>
+        </div>
+        <div class="mhc-mini-tbl">
+          <div class="mhc-mini-row">
+            <div class="mhc-mini-lbl">Travel per overnight ($)</div>
+            <input type="number" class="mhc-sm-input" id="mhc-travelRate" value="300" min="0" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+      <button class="mhc-preset" onclick="mhcReset()">↺ &nbsp;Reset to Standard Rates</button>
+    </div>
+  </div>
+
+  <!-- 2. NET SALES & PROFIT MARGIN -->
+  <button class="mhc-ctoggle mhc-pm-toggle" onclick="mhcToggle('pm')">
+    <div class="mhc-ctoggle-left">
+      <div class="mhc-ctoggle-dot"></div>
+      Net Sales &amp; Profit Margin
+    </div>
+    <div class="mhc-ctoggle-right">
+      <span class="mhc-ctoggle-badge">P&amp;L View</span>
+      <div class="mhc-ctoggle-arrow">
+        <svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </button>
+  <div class="mhc-cpanel mhc-pm-panel" id="mhc-pm-panel">
+    <div class="mhc-panel-inner">
+      <div class="mhc-two-col">
+        <div>
+          <div class="mhc-psect">Cost of Goods (COGS)</div>
+          <div class="mhc-view-rows">
+            <div class="mhc-view-row"><div class="mhc-vlbl">Hats</div><div class="mhc-vval" id="mhc-pm-cogsHats">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Included Patches</div><div class="mhc-vval" id="mhc-pm-cogsIncl">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Additional Patches</div><div class="mhc-vval" id="mhc-pm-cogsAddl">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Patch Suite</div><div class="mhc-vval" id="mhc-pm-cogsSuite">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Staff &amp; Post-Event</div><div class="mhc-vval" id="mhc-pm-cogsStaff">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Travel</div><div class="mhc-vval" id="mhc-pm-cogsTravel">$—</div></div>
+            <div class="mhc-view-row vtotal"><div class="mhc-vlbl">Total COGS</div><div class="mhc-vval" id="mhc-pm-totalCogs">$—</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="mhc-psect">P&amp;L Summary</div>
+          <div class="mhc-view-rows">
+            <div class="mhc-view-row"><div class="mhc-vlbl">Total Revenue</div><div class="mhc-vval" id="mhc-pm-totalSales">$—</div></div>
+            <hr class="mhc-vdivider">
+            <div class="mhc-view-row"><div class="mhc-vlbl">Gross Margin</div><div class="mhc-vval" id="mhc-pm-gross">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Sales Tax (4%)</div><div class="mhc-vval" id="mhc-pm-tax">$—</div></div>
+            <div class="mhc-view-row vtotal"><div class="mhc-vlbl">Net Sales</div><div class="mhc-vval" id="mhc-pm-net">$—</div></div>
+            <hr class="mhc-vdivider">
+            <div class="mhc-view-row" style="padding-top:8px;">
+              <div class="mhc-vlbl mhc-vlbl-strong">Profit Margin</div>
+              <div class="mhc-vval big" id="mhc-pm-margin">—%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:#AAA;margin-top:16px;font-weight:500;">Based on standard wholesale rates: hats $6.75, patches $1.53 each with 3 included per hat. Sales tax 4%.</p>
+    </div>
+  </div>
+
+  <!-- 3. COST BREAKDOWN -->
+  <button class="mhc-ctoggle mhc-cost-toggle" onclick="mhcToggle('cost')">
+    <div class="mhc-ctoggle-left">
+      <div class="mhc-ctoggle-dot"></div>
+      Cost Breakdown
+    </div>
+    <div class="mhc-ctoggle-right">
+      <span class="mhc-ctoggle-badge">Internal View</span>
+      <div class="mhc-ctoggle-arrow">
+        <svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </button>
+  <div class="mhc-cpanel mhc-cost-panel" id="mhc-cost-panel">
+    <div class="mhc-panel-inner">
+      <div class="mhc-two-col">
+        <div>
+          <div class="mhc-psect">Event Cost Summary</div>
+          <div class="mhc-view-rows">
+            <div class="mhc-view-row"><div class="mhc-vlbl">Wholesale per hat (all-in)</div><div class="mhc-vval" id="mhc-cost-wpu">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Total Hat COGS</div><div class="mhc-vval" id="mhc-cost-hats">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Total Patch COGS</div><div class="mhc-vval" id="mhc-cost-patches">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Staffing Cost</div><div class="mhc-vval" id="mhc-cost-staff">$—</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Travel Cost</div><div class="mhc-vval" id="mhc-cost-travel">$—</div></div>
+            <div class="mhc-view-row vtotal"><div class="mhc-vlbl">Total Event Cost</div><div class="mhc-vval" id="mhc-cost-total">$—</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="mhc-psect">Selling Price Reference</div>
+          <div class="mhc-view-rows">
+            <div class="mhc-view-row" style="flex-direction:column;align-items:flex-start;gap:3px;">
+              <div class="mhc-vlbl mhc-vlbl-strong">100–200 hats</div>
+              <div style="font-size:11px;color:#AAA;">75% advance @ $36 &nbsp;·&nbsp; 25% remaining @ $34</div>
+            </div>
+            <div class="mhc-view-row" style="flex-direction:column;align-items:flex-start;gap:3px;">
+              <div class="mhc-vlbl mhc-vlbl-strong">200–500 hats</div>
+              <div style="font-size:11px;color:#AAA;">50% advance @ $34 &nbsp;·&nbsp; 50% remaining @ $32</div>
+            </div>
+            <div class="mhc-view-row" style="flex-direction:column;align-items:flex-start;gap:3px;">
+              <div class="mhc-vlbl mhc-vlbl-strong">500+ hats</div>
+              <div style="font-size:11px;color:#AAA;">50% advance @ $30 &nbsp;·&nbsp; 50% remaining @ $28</div>
+            </div>
+          </div>
+          <div class="mhc-psect" style="margin-top:22px;">Wholesale Rates Used</div>
+          <div class="mhc-view-rows">
+            <div class="mhc-view-row"><div class="mhc-vlbl">Hat wholesale</div><div class="mhc-vval">$6.75 / hat</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Patch wholesale</div><div class="mhc-vval">$1.53 / patch</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Patches included per hat</div><div class="mhc-vval">3</div></div>
+            <div class="mhc-view-row"><div class="mhc-vlbl">Travel rate</div><div class="mhc-vval">$300 / night</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mhc-footnote">Estimates only. Final pricing confirmed with your event coordinator. Patch suite 1000+ hats to be determined with client.</p>
+
+</div><!-- /mhc-wrap -->
+</div><!-- /mh-calc -->
+
+<script>
+(function() {
+  // Namespace everything inside an IIFE so no globals leak into Shopify
+  const DEFAULTS = {
+    hatTiers: [
+      { label:'0–99 hats',    max:99,       advPct:1.0,  advPrice:38, remPct:0,    remPrice:0  },
+      { label:'100–200 hats', max:200,      advPct:0.75, advPrice:36, remPct:0.25, remPrice:34 },
+      { label:'201–500 hats', max:500,      advPct:0.5,  advPrice:34, remPct:0.5,  remPrice:32 },
+      { label:'500+ hats',    max:Infinity, advPct:0.5,  advPrice:32, remPct:0.5,  remPrice:28 },
+    ],
+    patchTiers:  [ {label:'50–200', max:200, price:2.0}, {label:'200–500', max:500, price:1.5}, {label:'500+', max:Infinity, price:1.0} ],
+    suitePrices: [ {label:'300 or less', max:300, price:1000}, {label:'300–500', max:500, price:1500}, {label:'500–1000', max:1000, price:2000}, {label:'1000+', max:Infinity, price:3000} ],
+    staffPct:7, staffMin:150, travelRate:300,
+  };
+  const WS = { hatCost:6.75, patchCost:1.53, patchesIncluded:3, taxRate:0.04, wpatch_sm:2.0, wpatch_lg:1.5 };
+  let D = dc(DEFAULTS);
+
+  function dc(o){ return {...o, hatTiers:o.hatTiers.map(t=>({...t})), patchTiers:o.patchTiers.map(t=>({...t})), suitePrices:o.suitePrices.map(t=>({...t}))}; }
+
+  // Expose toggle and reset to global scope (needed for onclick attributes)
+  window.mhcToggle = function(id) {
+    document.getElementById('mhc-'+id+'-panel').classList.toggle('open');
+    document.querySelector('.mhc-'+id+'-toggle').classList.toggle('open');
+  };
+  window.mhcReset = function() { D = dc(DEFAULTS); buildAdv(); calculate(); };
+
+  function gid(id){ return document.getElementById(id); }
+  function gv(id){ return parseFloat(gid(id)?.value)||0; }
+  function fmt(n){ if(n==null||isNaN(n))return'$—'; return'$'+Math.round(n).toLocaleString(); }
+  function fmtD(n){ if(n==null||isNaN(n))return'$—'; return(n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString(); }
+  function fmtP(n){ if(n==null||isNaN(n)||!isFinite(n))return'—%'; return(n*100).toFixed(1)+'%'; }
+
+  function set(id, v, cls){
+    const e = gid(id); if(!e) return;
+    e.textContent = v;
+    if(cls !== undefined){ e.classList.remove('pos','neg'); if(cls) e.classList.add(cls); }
+    e.classList.remove('vc'); void e.offsetWidth; e.classList.add('vc');
+  }
+
+  function mk(t,c,x){ const d=document.createElement(t); if(c)d.className=c; if(x!==undefined)d.textContent=x; return d; }
+  function ni(v,s,cb){ const i=document.createElement('input'); i.type='number'; i.className='mhc-sm-input'; i.value=v; i.min=0; i.step=s; i.inputMode='decimal'; i.addEventListener('input',()=>{ const n=parseFloat(i.value); if(!isNaN(n))cb(n); }); return i; }
+
+  function buildAdv(){
+    const grid = gid('mhc-hatTierGrid'); grid.innerHTML = '';
+    D.hatTiers.forEach((tier, i) => {
+      const card = mk('div','mhc-hat-tier-card');
+      const lbl  = mk('span','mhc-htc-label', tier.label);
+      card.appendChild(lbl);
+      [
+        { label:'Adv %',     field:'advPct',   isPct:true  },
+        { label:'Adv $/hat', field:'advPrice', isPct:false },
+        { label:'Rem %',     field:'remPct',   isPct:true  },
+        { label:'Rem $/hat', field:'remPrice', isPct:false },
+      ].forEach(({label, field, isPct}) => {
+        const w = mk('div','mhc-htc-field');
+        w.appendChild(mk('div','mhc-htc-field-label', label));
+        const inp = document.createElement('input');
+        inp.type='number'; inp.className='mhc-sm-input';
+        inp.value = isPct ? Math.round(tier[field]*100) : tier[field];
+        inp.min=0; inp.step=isPct?5:0.5; inp.inputMode='decimal';
+        inp.addEventListener('input', () => { const n=parseFloat(inp.value); if(!isNaN(n)){D.hatTiers[i][field]=isPct?n/100:n; calculate();} });
+        w.appendChild(inp); card.appendChild(w);
+      });
+      grid.appendChild(card);
+    });
+
+    const pt = gid('mhc-patchTable'); pt.innerHTML='';
+    D.patchTiers.forEach((t,i)=>{ const r=mk('div','mhc-mini-row'); r.appendChild(mk('div','mhc-mini-lbl',t.label+' hats')); r.appendChild(ni(t.price,0.25,v=>{D.patchTiers[i].price=v;calculate();})); pt.appendChild(r); });
+
+    const st = gid('mhc-suiteTable'); st.innerHTML='';
+    D.suitePrices.forEach((t,i)=>{ const r=mk('div','mhc-mini-row'); r.appendChild(mk('div','mhc-mini-lbl',t.label+' hats')); r.appendChild(ni(t.price,50,v=>{D.suitePrices[i].price=v;calculate();})); st.appendChild(r); });
+
+    gid('mhc-staffPct').value  = D.staffPct;
+    gid('mhc-staffMin').value  = D.staffMin;
+    gid('mhc-travelRate').value = D.travelRate;
+  }
+
+  function calculate(){
+    const hats      = gv('mhc-totalHats');
+    const patches   = gid('mhc-customPatches').value;
+    const suite     = gid('mhc-patchSuite').value;
+    const hrs       = gv('mhc-eventLength') || 1;
+    const overnight = gv('mhc-overnights');
+    const staffPct  = (gv('mhc-staffPct') || D.staffPct) / 100;
+    const staffMin  = gv('mhc-staffMin')  || D.staffMin;
+    const travelRate= gv('mhc-travelRate') || D.travelRate;
+
+    const staffNeeded = Math.ceil((hats/hrs)/25);
+    const cartsNeeded = Math.ceil(staffNeeded/5);
+    const tier      = D.hatTiers.find(t=>hats<=t.max)||D.hatTiers.at(-1);
+    const hatInAdv  = hats*tier.advPct*tier.advPrice;
+    const hatRem    = hats*tier.remPct*tier.remPrice;
+
+    let patchCost=0;
+    if(patches!=='none'&&hats>=50){ const pt=D.patchTiers.find(t=>hats<=t.max)||D.patchTiers.at(-1); patchCost=hats*pt.price*(patches==='1 Design'?1:2); }
+    let suiteCost=0;
+    if(suite==='Yes'){ const st=D.suitePrices.find(t=>hats<=t.max)||D.suitePrices.at(-1); suiteCost=st.price; }
+
+    const totalRev    = hatInAdv+hatRem+patchCost+suiteCost;
+    const byPct       = totalRev*staffPct;
+    const byFlat      = staffNeeded*staffMin;
+    const staffingFee = (staffNeeded>0&&byPct/staffNeeded>staffMin)?byPct:byFlat;
+    const travel      = travelRate*overnight;
+    const totalPrior  = hatInAdv+patchCost+suiteCost+staffingFee+travel;
+    const totalPost   = hatRem;
+    const grandTotal  = totalPrior+totalPost;
+
+    set('mhc-staffCount',   staffNeeded);
+    set('mhc-cartCount',    cartsNeeded);
+    set('mhc-hatTierLabel', tier.label+' — '+Math.round(tier.advPct*100)+'% in advance');
+    set('mhc-hatRemLabel',  tier.label+' — '+Math.round(tier.remPct*100)+'% remaining');
+    set('mhc-hatCost',      fmt(hatInAdv));
+    set('mhc-patchCost',    fmt(patchCost));
+    set('mhc-suiteCost',    fmt(suiteCost));
+    set('mhc-staffingCost', fmt(staffingFee));
+    set('mhc-travelCost',   fmt(travel));
+    set('mhc-totalPrior',   fmt(totalPrior));
+    set('mhc-hatRemCost',   fmt(hatRem));
+    set('mhc-totalPost',    fmt(totalPost));
+    set('mhc-grandTotal',   fmt(grandTotal));
+
+    // P&L
+    const cHats=WS.hatCost*hats, cIncl=WS.patchCost*WS.patchesIncluded*hats;
+    let cAddl=0; if(patches!=='none'&&hats>=50){const wp=hats<=200?WS.wpatch_sm:WS.wpatch_lg; cAddl=hats*wp*(patches==='1 Design'?1:2);}
+    let cSuite=0; if(suite==='Yes'&&hats>=50){const wp=hats<=200?WS.wpatch_sm:WS.wpatch_lg; cSuite=hats*wp*3;}
+    const cStaff=staffingFee+hatRem, cTravel=travel;
+    const totalCogs=cHats+cIncl+cAddl+cSuite+cStaff+cTravel;
+    const gross=grandTotal-totalCogs, tax=grandTotal*WS.taxRate, net=gross-tax;
+    const margin=grandTotal>0?net/grandTotal:null;
+
+    set('mhc-pm-cogsHats', fmt(cHats)); set('mhc-pm-cogsIncl', fmt(cIncl));
+    set('mhc-pm-cogsAddl', fmt(cAddl)); set('mhc-pm-cogsSuite', fmt(cSuite));
+    set('mhc-pm-cogsStaff', fmt(cStaff)); set('mhc-pm-cogsTravel', fmt(cTravel));
+    set('mhc-pm-totalCogs', fmt(totalCogs)); set('mhc-pm-totalSales', fmt(grandTotal));
+    set('mhc-pm-gross', fmtD(gross), gross>=0?'pos':'neg');
+    set('mhc-pm-tax', fmt(tax));
+    set('mhc-pm-net', fmtD(net), net>=0?'pos':'neg');
+    const me=gid('mhc-pm-margin');
+    if(me){ me.textContent=fmtP(margin); me.className='mhc-vval big '+(margin!=null&&margin>=0?'pos':'neg'); me.classList.remove('vc'); void me.offsetWidth; me.classList.add('vc'); }
+
+    // Costs
+    const wpu=WS.hatCost+(WS.patchCost*WS.patchesIncluded), thcogs=WS.hatCost*hats;
+    let tpcogs=WS.patchCost*WS.patchesIncluded*hats;
+    if(patches!=='none'&&hats>=50){const pt2=D.patchTiers.find(t=>hats<=t.max)||D.patchTiers.at(-1); tpcogs+=hats*(patches==='1 Design'?1:2)*pt2.price;}
+    if(suite==='Yes') tpcogs+=cSuite;
+    set('mhc-cost-wpu', fmt(wpu)); set('mhc-cost-hats', fmt(thcogs));
+    set('mhc-cost-patches', fmt(tpcogs)); set('mhc-cost-staff', fmt(staffingFee));
+    set('mhc-cost-travel', fmt(travel)); set('mhc-cost-total', fmt(thcogs+tpcogs+staffingFee+travel));
+  }
+
+  ['mhc-totalGuests','mhc-totalHats','mhc-eventLength','mhc-overnights'].forEach(id=>gid(id).addEventListener('input',calculate));
+  ['mhc-customPatches','mhc-patchSuite'].forEach(id=>gid(id).addEventListener('change',calculate));
+  ['mhc-staffPct','mhc-staffMin','mhc-travelRate'].forEach(id=>{ const e=gid(id); if(e)e.addEventListener('input',calculate); });
+
+  buildAdv();
+  calculate();
+})();
+</script>
